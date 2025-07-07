@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PastelJournal</title>
+  <style>
+    body {
+      background: linear-gradient(to bottom right, #ffe4ec, #e0f7fa, #fef9e7);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 30px;
+      color: #555;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #ff69b4;
+      margin-bottom: 10px;
+    }
+
+    .quote {
+      font-size: 18px;
+      color: #8a2be2;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    nav {
+      margin: 20px;
+    }
+
+    nav a {
+      margin: 10px;
+      text-decoration: none;
+      color: #ff69b4;
+      font-weight: bold;
+      font-size: 18px;
+      padding: 8px 15px;
+      background-color: #fff0f5;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #ffe4ec;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    textarea {
+      width: 80%;
+      height: 250px;
+      border: 3px solid #ffccf9;
+      border-radius: 15px;
+      padding: 15px;
+      font-size: 16px;
+      background-color: #fffafc;
+      resize: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .save-button {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #ffb6c1;
+      border: none;
+      color: white;
+      border-radius: 25px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .save-button:hover {
+      background-color: #ff69b4;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 16px;
+      color: #7b68ee;
+      display: none;
+    }
+
+    .about-box {
+      background-color: #fffafc;
+      border: 2px solid #ffd1dc;
+      padding: 25px;
+      border-radius: 20px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    audio {
+      margin-top: 30px;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌸 Shraddha's Pastel World 🌸</h1>
+  <div class="quote">“Write your heart, the page is yours 🌈”</div>
+
+  <!-- Navigation Buttons -->
+  <nav>
+    <a href="#" onclick="showPage('journal')">My Journal</a>
+    <a href="#" onclick="showPage('about')">About Me</a>
+  </nav>
+
+  <!-- JOURNAL PAGE -->
+  <div id="journal">
+    <textarea id="journalBox" placeholder="Type your thoughts, dreams, or journal here..."></textarea>
+    <br>
+    <button class="save-button" onclick="saveEntry()">Save Entry 💾</button>
+    <div class="message" id="message">✨ Your entry is saved! ✨</div>
+  </div>
+
+  <!-- ABOUT ME PAGE -->
+  <div id="about" class="hidden">
+    <div class="about-box">
+      <h2>About Me 💖</h2>
+      <p>Hi, I'm Shraddha! I’m a creative girl who loves pastel colors, cute things, digital art, and magical journaling.</p>
+      <p>I enjoy making websites, drawing, learning new skills, and designing dream worlds online!</p>
+      <p>My favorite colors are baby pink, lavender, and mint! 🌸💜💚</p>
+      <p>This site is a place for dreams, thoughts, and sparkly self-expression! ✨</p>
+    </div>
+  </div>
+
+  <!-- Music Player -->
+  <audio controls autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2023/03/08/audio_7e7ff3e36e.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Script Section -->
+  <script>
+    // Save journal entry to local storage
+    function saveEntry() {
+      const journalText = document.getElementById("journalBox").value;
+      localStorage.setItem("myJournal", journalText);
+      document.getElementById("message").style.display = "block";
+    }
+
+    // Load saved journal entry
+    window.onload = function () {
+      const savedText = localStorage.getItem("myJournal");
+      if (savedText) {
+        document.getElementById("journalBox").value = savedText;
+      }
+    };
+
+    // Page switcher
+    function showPage(page) {
+      document.getElementById("journal").classList.add("hidden");
+      document.getElementById("about").classList.add("hidden");
+      document.getElementById(page).classList.remove("hidden");
+      document.getElementById("message").style.display = "none";
+    }
+
+    // Hide message on start
+    document.getElementById("message").style.display = "none";
+  </script>
+
+</body>
+</html>
